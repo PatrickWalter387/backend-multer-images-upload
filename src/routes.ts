@@ -1,8 +1,12 @@
 import { Router } from "express";
-import { appendFile } from "fs";
+import multer from "multer";
+import multerConfig from "./config/multer";
 
 const routes = Router();
 
-routes.get("/", (req, res) => res.json({ message: "Funcionando" }));
+routes.get("/", multer(multerConfig).single("file"), (req, res) => {
+    console.log(req.file);
+    res.json({ message: "Funcionando" });
+});
 
 export default routes;
