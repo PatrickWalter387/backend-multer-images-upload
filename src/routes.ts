@@ -4,8 +4,9 @@ import multerConfig from "./config/multer";
 
 const routes = Router();
 
-routes.get("/", multer(multerConfig).single("file"), (req, res) => {
+routes.post("/", multer(multerConfig).single("file"), (req, res) => {
     console.log(req.file);
+    console.log(req.body);
     res.json({ message: "Funcionando" });
 });
 
